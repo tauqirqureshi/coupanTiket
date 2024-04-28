@@ -18,8 +18,8 @@ use Filament\Notifications\Notification;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Blade;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+// use Dompdf\Dompdf;
+// use Dompdf\Options;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 // use BaconQrCode\Renderer\ImageRenderer;
