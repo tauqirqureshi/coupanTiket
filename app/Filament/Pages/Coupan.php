@@ -23,6 +23,9 @@ class Coupan extends Page implements Forms\Contracts\HasForms
 
     protected static string $view = 'filament.pages.coupan';
     protected static string $resource = CustomPage::class;
+    protected static ?string $title = 'Generate Ticket';
+
+
 
     public function mount()
     {

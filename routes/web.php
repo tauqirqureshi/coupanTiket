@@ -30,7 +30,21 @@ Route::post ( '/search', function (Request $request) {
 	$input = $request->input('search');
     info('input: ' .$input);
     if ($input != '') {
-        $ticket = Ticket::where('certificate_no', 'LIKE', '%' . $input . '%')->orderBy('created_at')->get();
+        // $ticket = Ticket::where('certificate_no', 'LIKE', '%' . $input . '%')->orderBy('created_at')->get();
+        // $ticket = Ticket::leftJoin('products', 'tickets.id', '=', 'products.ticket_id')
+        // ->where(function ($query) use ($input) {
+        //     $query->where('tickets.certificate_no', 'LIKE', '%' . $input . '%')
+        //           ->orWhere('products.name', 'LIKE', '%' . $input . '%');
+        // })
+        // ->orderBy('tickets.created_at', 'ASC')
+        // ->get();
+        $ticket = Ticket::where('certificate_no', 'LIKE', '%' . $input . '%')
+        ->orWhereHas('product', function ($query) use ($input) {
+            $query->where('name', 'LIKE', '%' . $input . '%');
+        })
+        ->orderBy('created_at')
+        ->get();
+
         // info('input: ' .$ticket[0]->product);
 
         if (count($ticket) > 0) {
