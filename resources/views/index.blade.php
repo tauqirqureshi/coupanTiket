@@ -14,7 +14,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container">
           <a class="navbar-brand" href="#">
-            <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+            <img src="{{ asset('storage/image/Icon.png') }}" alt="" width="30" height="24">
           </a>
         </div>
       </nav>
@@ -47,8 +47,9 @@
                     <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                       <div class="bg-image hover-zoom ripple rounded ripple-surface">
 
-                        <img src="public/image/<?php echo $ticket->product->image;  ?>"
+                          <img src="{{ asset('storage/'.$ticket->product->image) }}"
                           class="w-100" />
+
                         {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
                           class="w-100" /> --}}
                         <a href="#!">

@@ -66,11 +66,14 @@ class TicketResource extends Resource
                     // Log the ID
                     info('ID: ' .$record);
                     $record->QR= QrCode::format('png')->size(256)->generate('Make me into a QrCode!');
-
+                    $record->redirectUrl=url('/Ticket/' . $record->certificate_no);
+                     info('URL: ' .$record->redirectUrl);
                     $record->QRImage = "data:image/png;base, $record->QR";
-                    info('QR: ' .$record->QR);
+                    // info('QR: ' .$record->QR);
                     // $pdfContent = TicketResource::generatePdf($record);
-                    info('QRImage: ' .$record->QRImage);
+                    // info('QRImage: ' .$record->QRImage);
+                    $record->image=base64_encode(url('/storage/' . $record->product->image));
+                    info('URL: ' .$record->image);
                     Notification::make()
                         ->title('Saved successfully')
                         ->success()
