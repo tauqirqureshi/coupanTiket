@@ -37,7 +37,7 @@ class Product extends Model
         'hitech_no',//
     ];
 
-    // step 1 : run the queries in DB
+    // step 1 : run the queries in DB or run php artisan migrate command
     // step 2 : run command
     //      php artisan cache:clear
     //      php artisan config:clear
