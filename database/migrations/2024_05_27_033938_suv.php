@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->string('slug')->nullable();
+            $table->string('hitech_no')->nullable();
+            $table->string('size')->nullable();
+            $table->string('xrays')->nullable();
+            $table->string('natural_face')->nullable();
+            $table->string('treatment_created_faces')->nullable();
+            $table->string('final_obs')->nullable();
+            $table->string('making')->nullable();
+            $table->string('indain_name')->nullable();
+            $table->string('shape_cut')->nullable();
+            $table->string('inclussion')->nullable();
+            $table->string('stone_name')->nullable();
+            $table->string('treatment')->nullable();
         });
     }
 

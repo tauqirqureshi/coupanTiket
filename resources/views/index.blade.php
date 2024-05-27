@@ -77,7 +77,7 @@
                         <span class="text-primary"> • </span>
                         <span>{{$ticket->product->weight}}<br /></span>
                         <span class="text-primary"> • </span>
-                        <span>{{$ticket->product->slug}}<br /></span>
+                        <span>{{$ticket->product->hitech_no}}<br /></span>
                       </div>
                       <div class="mb-2 text-muted small">
                         <span>{{$ticket->product->micro_obs}}</span>
