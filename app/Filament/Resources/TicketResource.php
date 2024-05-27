@@ -45,6 +45,11 @@ class TicketResource extends Resource
        return false;
     }
 
+    public static function canEdit($record): bool
+    {
+       return false;
+    }
+
     public static function table(Table $table): Table
     {
         return $table

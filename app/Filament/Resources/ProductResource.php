@@ -39,6 +39,7 @@ class ProductResource extends Resource
                 TextInput::make('hardless'),
                 TextInput::make('micro_obs'),
                 TextInput::make('comment'),
+                TextInput::make('slug'),
                 FileUpload::make('image')->disk('public')->directory('image'),
             ]);
     }
@@ -57,6 +58,7 @@ class ProductResource extends Resource
                 TextColumn::make('hardless')->sortable()->searchable(),
                 TextColumn::make('micro_obs')->sortable()->searchable(),
                 TextColumn::make('comment')->sortable()->searchable(),
+                TextColumn::make('slug')->sortable()->searchable(),
                 ImageColumn::make('image')
             ])
             ->filters([

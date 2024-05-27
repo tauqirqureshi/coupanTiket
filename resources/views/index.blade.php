@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="card">
-        @if(isset($details))
+        @if(isset($query))
         <h5 class="card-header">The Search results for your  <b> {{ $query }} <b></h5>
         @endif
     <div class="card-body">
@@ -76,6 +76,8 @@
                         <span>{{$ticket->product->shape}}</span>
                         <span class="text-primary"> • </span>
                         <span>{{$ticket->product->weight}}<br /></span>
+                        <span class="text-primary"> • </span>
+                        <span>{{$ticket->product->slug}}<br /></span>
                       </div>
                       <div class="mb-2 text-muted small">
                         <span>{{$ticket->product->micro_obs}}</span>

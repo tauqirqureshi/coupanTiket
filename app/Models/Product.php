@@ -23,6 +23,7 @@ class Product extends Model
         'micro_obs',
         'comment',
         'image',
+        'slug'
     ];
-
+//ALTER TABLE `products` ADD `slug` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL AFTER `updated_at`;
 }

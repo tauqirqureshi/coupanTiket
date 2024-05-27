@@ -38,7 +38,7 @@ Route::post ( '/search', function (Request $request) {
         // })
         // ->orderBy('tickets.created_at', 'ASC')
         // ->get();
-        $ticket = Ticket::where('certificate_no', 'LIKE', '%' . $input . '%')
+        $ticket = Ticket::where('certificate_no', '=',  $input )
         ->orWhereHas('product', function ($query) use ($input) {
             $query->where('name', 'LIKE', '%' . $input . '%');
         })
@@ -52,7 +52,7 @@ Route::post ( '/search', function (Request $request) {
             // return view('index')->withDetails($ticket)->withQuery('ticket', $input);
         }
         else
-			return view ( 'index' )->withMessage ( 'No Details found. Try to search again !' );
+			return view ( 'index' )->withMessage ( 'No Details found. Try to search again !' )->withQuery ( $input );
     }
     return view('index');
 } );
