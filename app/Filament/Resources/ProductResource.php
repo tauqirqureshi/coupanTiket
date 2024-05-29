@@ -43,7 +43,7 @@ class ProductResource extends Resource
                 TextInput::make('size'),
                 TextInput::make('xrays'),
                 TextInput::make('natural_face'),
-                TextInput::make('treatment_created_faces'),
+                TextInput::make('treatment_created_faces')->label('Treatment Faces'),
                 TextInput::make('final_obs'),
                 TextInput::make('making'),
                 TextInput::make('indain_name'),
@@ -51,7 +51,7 @@ class ProductResource extends Resource
                 TextInput::make('inclussion'),
                 TextInput::make('stone_name'),
                 TextInput::make('treatment'),
-                FileUpload::make('image')->disk('public')->directory('image'),
+                FileUpload::make('image')->label('Product Image')->disk('public')->directory('image'),
             ]);
     }
 
@@ -73,7 +73,7 @@ class ProductResource extends Resource
                 TextColumn::make('size')->sortable()->searchable(),
                 TextColumn::make('xrays')->sortable()->searchable(),
                 TextColumn::make('natural_face')->sortable()->searchable(),
-                TextColumn::make('treatment_created_faces')->sortable()->searchable(),
+                TextColumn::make('treatment_created_faces')->label('Treatment Faces')->sortable()->searchable(),
                 TextColumn::make('final_obs')->sortable()->searchable(),
                 TextColumn::make('making')->sortable()->searchable(),
                 TextColumn::make('indain_name')->sortable()->searchable(),
@@ -81,7 +81,7 @@ class ProductResource extends Resource
                 TextColumn::make('inclussion')->sortable()->searchable(),
                 TextColumn::make('stone_name')->sortable()->searchable(),
                 TextColumn::make('treatment')->sortable()->searchable(),
-                ImageColumn::make('image')
+                ImageColumn::make('image')->label('Product Image')
             ])
             ->filters([
                 //
