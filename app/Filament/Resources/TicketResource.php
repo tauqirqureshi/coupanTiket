@@ -64,6 +64,16 @@ class TicketResource extends Resource
             ->actions([
                 // Tables\Actions\EditAction::make(),
                 // Tables\Actions\PdfAction::make(),
+                Tables\Actions\Action::make('redirectToTicket')
+        ->icon('heroicon-o-arrow-right')
+        ->label('Go to Ticket')
+        ->action(function (Ticket $record) {
+            // Log the redirection action
+            info('Redirecting to Ticket ID: ' . $record->certificate_no);
+
+            // Redirect to the ticket URL
+            return redirect()->to('/qrcodeview/' . $record->certificate_no);
+        }),
                 Tables\Actions\Action::make('saveAnother')
                 ->icon('heroicon-o-document-duplicate')
                 ->label('Download PDF')
@@ -105,10 +115,36 @@ class TicketResource extends Resource
                     // Send notification
 
                 })
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\BulkAction::make('export')
+                ->label('View Selected Ticket')
+                ->button()
+                // ->icon('heroicon-o-document-download')
+                ->action(function ($records) {
+                    // Log the number of records selected
+                    info('Number of records selected for export: ' . count($records));
+
+                    // Perform the export operation here
+                    // This is just an example of how you might start this process
+
+                    // Collect the IDs of the selected records
+                    $ids = collect($records)->pluck('id')->implode(',');
+                    info('Comma-separated IDs: ' . $ids);
+                    // Send success notification
+
+                    return redirect()->to('/admin/qrcodeview?id=' . $ids);
+                    Notification::make()
+                        ->title('Export completed successfully')
+                        ->success()
+                        ->send();
+
+                    // Optional: Return a response or redirect after the action
+                    return back();
+                })
                     // BulkAction::make('export')->button()->action('saveAndCreateAnother'),
                 ]),
 

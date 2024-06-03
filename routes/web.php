@@ -125,3 +125,45 @@ Route::get ( '/qrcodeview/{id}', function (Request $request) {
     }
     return view('pdf2')->withMessage ( 'No Details found. Try to search again !' );;
 } );
+
+Route::get ( '/admin/qrcodeview/', function (Request $request) {
+    info('input: '.$request->id);
+    if($request->query('id')){
+        $input = $request->query('id');
+    }
+	$input = $request->query('id');
+    info('input: ' .$input);
+    $url = url('/Ticket/');
+    if ($input != '') {
+        // $ticket = Ticket::where('certificate_no', 'LIKE', '%' . $input . '%')->orderBy('created_at')->get();
+        // $ticket = Ticket::leftJoin('products', 'tickets.id', '=', 'products.ticket_id')
+        // ->where(function ($query) use ($input) {
+        //     $query->where('tickets.certificate_no', 'LIKE', '%' . $input . '%')
+        //           ->orWhere('products.name', 'LIKE', '%' . $input . '%');
+        // })
+        // ->orderBy('tickets.created_at', 'ASC')
+        // ->get();
+        $idNumbers = explode(',', $input);
+
+        $tickets = Ticket::whereIn('id', $idNumbers)->get();
+        // $ticket = Ticket::where('certificate_no', '=',  $input
+        // )
+        // ->get();
+
+        // info('input: ' .$ticket[0]->product);
+
+        if (count($tickets) > 0) {
+            $ticketsWithUrls = $tickets->map(function($ticket) {
+                $ticket->url = url('/Ticket/' . $ticket->certificate_no);
+                return $ticket;
+            });
+            // return view ( 'pdf2',['ticket' => $input] );
+            return view('pdf2', compact('ticketsWithUrls'));
+            // return view('index')->withDetails($ticket)->withQuery('ticket', $input);
+        }
+        else
+			return view ( 'pdf2' )->withMessage ( 'No Details found. Try to search again !' );
+    }
+    return view('pdf2')->withMessage ( 'No Details found. Try to search again !' );;
+} );
+
