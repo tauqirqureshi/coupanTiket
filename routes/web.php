@@ -5,6 +5,7 @@ use App\Models\Ticket;
 // use Illuminate\Support\Facades\Input;
 // use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
@@ -92,6 +93,11 @@ Route::get ( '/qrcodeview/{id}', function (Request $request) {
     info('input: '.$request->id);
 	$input = $request->id;
     info('input: ' .$input);
+
+    $user = Auth::user();
+    if (!$user){
+        return redirect()->to('/admin/login');
+    }
     $url = url('/Ticket/');
     if ($input != '') {
         // $ticket = Ticket::where('certificate_no', 'LIKE', '%' . $input . '%')->orderBy('created_at')->get();
@@ -128,6 +134,11 @@ Route::get ( '/qrcodeview/{id}', function (Request $request) {
 
 Route::get ( '/admin/qrcodeview/', function (Request $request) {
     info('input: '.$request->id);
+
+    $user = Auth::user();
+    if (!$user){
+        return redirect()->to('/admin/login');
+    }
     if($request->query('id')){
         $input = $request->query('id');
     }
